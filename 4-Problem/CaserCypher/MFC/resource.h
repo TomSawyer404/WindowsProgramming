@@ -4,9 +4,8 @@
 //
 #define IDD_CASERCYPHER_DIALOG          102
 #define IDR_MAINFRAME                   128
-#define IDD_DLG_ABOUT                   134
-#define IDI_ICON1                       137
 #define IDI_ICON_BANANA                 136
+#define IDI_ICON1                       137
 #define IDC_EDIT_KEY                    1000
 #define IDC_BUT_KEY                     1001
 #define IDC_LIST_FNAME                  1002

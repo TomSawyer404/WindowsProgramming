@@ -123,7 +123,7 @@ void CCaserCypherDlg::OnBnClickedButKey() {
 
 	BOOL isValidKey = TRUE;
 	if (csKey.GetLength() <= 0 || csKey.GetLength() >= 4) {
-		MessageBoxW(L"请输入一个3位数的非负整数!", L"密钥合法性验证");
+		MessageBoxW(L"请输入一个小于256的非负整数!", L"密钥合法性验证");
 		isValidKey = FALSE;
 	}
 	if (isValidKey) {
@@ -139,8 +139,14 @@ void CCaserCypherDlg::OnBnClickedButKey() {
 
 	// 把输入转换为数字 
 	if (isValidKey) {
-		m_uiKey = _wtoi(csKey);
-		MessageBoxW(L"输入密钥成功!", L"密钥输入过程");
+		UINT tmp = _wtoi(csKey);
+		if (tmp >= 256 || tmp < 0) {
+			MessageBoxW(L"请输入一个小于256的非负整数!", L"密钥合法性验证");
+		}
+		else {
+			m_uiKey = tmp;
+			MessageBoxW(L"输入密钥成功!", L"密钥输入过程");
+		}
 	}
 }
 
@@ -254,7 +260,7 @@ void CCaserCypherDlg::OnBnClickedButDecrypt() {
 
 	// 封装进线程------------------------------------------------
 
-	// 获取需要加密的文件映射
+	// 获取需要解密的文件映射
 	if (isValid) {
 		m_pInFile = FileMapping(m_FilePath, 0x1, m_pFileSize);  // Read Mode
 		if (nullptr == m_pInFile) {
@@ -273,13 +279,13 @@ void CCaserCypherDlg::OnBnClickedButDecrypt() {
 		}
 	}
 
-	// 加密数据
+	// 解密数据
 	if (isValid) {
 		if (do_CaserDecrypt(m_pOutFile, m_pInFile, m_uiKey, *m_pFileSize)) {
-			MessageBoxW(L"解密成功!", L"加密过程");
+			MessageBoxW(L"解密成功!", L"解密过程");
 		}
 		else {
-			MessageBoxW(L"解密失败!", L"加密过程");
+			MessageBoxW(L"解密失败!", L"解密过程");
 			isValid = FALSE;
 		}
 	}
