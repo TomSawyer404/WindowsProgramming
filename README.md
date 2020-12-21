@@ -1,5 +1,5 @@
 # WindowsProgramming
-《Windows核心编程》课程2020-2021-Spring学期期末考核采用【课程设计】的方式  
+《Windows核心编程》课程*2020-Fall学期*期末考核采用【课程设计】的方式  
 
 本Project实现一部分选题，开源出来用以技术交流，学习进步  
 
